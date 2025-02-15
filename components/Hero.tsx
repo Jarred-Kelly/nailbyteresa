@@ -32,30 +32,30 @@ export const Hero = () => {
   ];
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden">
-      {/* Background */}
+    <div className="relative w-full min-h-screen flex items-center justify-center text-left overflow-hidden">
+      {/* Gradient Background */}
       <div
-        className="absolute inset-0 w-full h-full blur-[160px] z-0"
+        className="absolute inset-0 w-full h-full z-0"
         style={{
           background: `linear-gradient(
-            180deg,
-            rgba(255, 240, 255, 1) 0%,
-            rgba(253, 242, 255, 0.95) 25%,
-            rgba(255, 245, 255, 0.9) 50%,
-            rgba(255, 248, 255, 0.85) 75%,
-            rgba(255, 255, 255, 1) 100%
+            to bottom,
+            rgba(25, 0, 50, 1) 0%,     /* Deep Dark Purple */
+            rgba(55, 0, 90, 0.9) 25%,   /* Rich Purple */
+            rgba(120, 50, 150, 0.7) 50%, /* Soft Violet */
+            rgba(200, 150, 200, 0.5) 75%, /* Light Lavender */
+            rgba(250, 250, 250, 1) 100%  /* Almost White */
           )`,
         }}
       ></div>
 
-      {/* Main Content (moved down using extra top padding) */}
-      <div className="relative z-10 container mx-auto px-6 pt-24 pb-12">
+      {/* Main Content (Moved Down) */}
+      <div className="relative z-10 container mx-auto px-6 pt-32 pb-16">
         <div className="flex flex-col md:flex-row items-center justify-between">
-          {/* Text Section */}
+          {/* Left - Text Section */}
           <div className="flex-1 text-left">
             <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-yellow-400 hover:duration-300">
-              <h1 className="font-display text-2xl md:text-3xl font-semibold mb-2 bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50 bg-clip-text text-transparent animate-pulse drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]">
-                Luxury Nail Care
+              <h1 className="font-display text-3xl md:text-4xl font-semibold mb-2 bg-gradient-to-r from-amber-200 via-amber-300 to-amber-200 bg-clip-text text-transparent animate-pulse drop-shadow-[0_0_20px_rgba(255,215,0,1.2)]">
+                ✨ Luxury Nail Care ✨
               </h1>
             </AnimatedShinyText>
 
@@ -71,7 +71,7 @@ export const Hero = () => {
             </p>
           </div>
 
-          {/* Photo Gallery Section */}
+          {/* Right - Photo Gallery */}
           <div className="flex-1 mt-8 md:mt-0 md:ml-12">
             <PhotoGallery items={items} />
           </div>
