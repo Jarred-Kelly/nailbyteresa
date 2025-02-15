@@ -1,6 +1,8 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
-import { Card } from "@/components/ui/card";
+ 
+import React from "react";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { cn } from "@/lib/utils";
 
 const testimonials = [
   {
@@ -19,110 +21,67 @@ const testimonials = [
     image: "placeholder.svg"
   },
   {
-    name: "Ashley T.",
-    quote: "Love how they always stay up-to-date with the latest trends.",
+    name: "Demo Pretorius",
+    quote: "Baie dankie Teresa vir my pragtie naels!",
     image: "placeholder.svg"
   },
   {
-    name: "Maria C.",
-    quote: "Best nail art in the city! They're true artists.",
+    name: "Tester Liebenberg",
+    quote: "Baie dankie vir die pragtige naels en lekker chat.",
     image: "placeholder.svg"
   },
   {
-    name: "Linda K.",
-    quote: "Consistently excellent service and stunning results.",
+    name: "New R.",
+    quote: "Found my go-to nail salon. The ambiance and service are exceptional.",
     image: "placeholder.svg"
   },
-  {
-    name: "Patricia B.",
-    quote: "Their attention to hygiene and safety is impressive.",
-    image: "placeholder.svg"
-  },
-  {
-    name: "Rachel D.",
-    quote: "The gel manicures last longer than any other salon I've tried.",
-    image: "placeholder.svg"
-  },
-  {
-    name: "Sophie M.",
-    quote: "Love the relaxing atmosphere and professional service.",
-    image: "placeholder.svg"
-  },
-  {
-    name: "Hannah W.",
-    quote: "Amazing nail art designs that always get compliments!",
-    image: "placeholder.svg"
-  }
 ];
 
-export const Testimonials = () => {
-  const [isPaused, setIsPaused] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+const firstRow = testimonials.slice(0, testimonials.length / 2);
 
-  useEffect(() => {
-    if (!isPaused && scrollRef.current) {
-      const scrollElement = scrollRef.current;
-      let scrollAmount = 0;
-      const distance = 1; // Pixels to scroll per frame
-      
-      const scroll = () => {
-        if (!isPaused && scrollElement) {
-          scrollAmount += distance;
-          scrollElement.scrollLeft = scrollAmount;
-
-          // Reset scroll position when reaching the end
-          if (scrollAmount >= (scrollElement.scrollWidth - scrollElement.clientWidth)) {
-            scrollAmount = 0;
-          }
-        }
-      };
-
-      const intervalId = setInterval(scroll, 30); // Adjust speed by changing interval
-
-      return () => clearInterval(intervalId);
-    }
-  }, [isPaused]);
-
+const TestimonialCard = ({
+  img,
+  name,
+  quote,
+}: {
+  img: string;
+  name: string;
+  quote: string;
+}) => {
   return (
-    <section id="testimonials" className="py-24 bg-primary/10 overflow-hidden">
-      <div className="mb-16 text-center">
-        <span className="text-accent uppercase tracking-wider text-sm font-medium">
-          Reviews
-        </span>
-        <h2 className="font-display text-4xl font-semibold mt-2">
-          Client Stories
-        </h2>
+    <figure
+      className={cn(
+        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+        // light styles
+        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
+        // dark styles
+        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
+      )}
+    >
+      <div className="flex flex-row items-center gap-2">
+        <img alt="" src={img} />
+        <div className="flex flex-col">
+          <figcaption className="text-sm font-medium dark:text-white">
+            {name}
+          </figcaption>
+        </div>
       </div>
-      
-      <div 
-        ref={scrollRef}
-        className="flex overflow-x-hidden gap-8 px-8"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-        {/* Double the testimonials to create seamless loop */}
-        {[...testimonials, ...testimonials].map((testimonial, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 w-[300px] transition-all duration-300 hover:scale-105 hover:-translate-y-2"
-          >
-            <Card className="bg-white p-6 shadow-sm h-full">
-              <div className="flex flex-col items-center text-center h-full">
-                <img
-                  src={testimonial.image}
-                  alt="Nail Design"
-                  className="w-full h-[200px] object-cover rounded-lg mb-4"
-                />
-                <p className="font-medium text-lg mb-2">{testimonial.name}</p>
-                <p className="text-text-light italic text-sm">
-                  "{testimonial.quote}"
-                </p>
-              </div>
-            </Card>
-          </div>
+      <blockquote className="mt-2 text-sm">{quote}</blockquote>
+    </figure>
+  );
+};
+
+export const Testimonials = () => {
+  return (
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+      <InfiniteMovingCards pauseOnHover className="[--duration:20s]">
+        {firstRow.map((testimonial) => (
+          <TestimonialCard key={testimonial.name} img={testimonial.image} name={testimonial.name} quote={testimonial.quote} />
         ))}
-      </div>
-    </section>
+      </InfiniteMovingCards>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+    </div>
   );
 };
 

@@ -1,49 +1,50 @@
-"use client";
-
-import { useEffect, useRef } from 'react';
+import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
+import { TextAnimate } from "@/components/magicui/text-animate";
 
 export const Hero = () => {
-  const parallaxRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (parallaxRef.current) {
-        const scrolled = window.scrollY;
-        parallaxRef.current.style.setProperty('--scroll-offset', `${scrolled * 0.3}px`);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden
-                      bg-gradient-to-b from-primary/20 to-white">
-      <div ref={parallaxRef} className="parallax container mx-auto px-6 pt-32 pb-16 text-center">
-        <span className="inline-block animate-fade-up [--animation-delay:200ms] opacity-0
-                       text-accent uppercase tracking-wider text-sm font-medium mb-4">
-          Luxury Nail Care
-        </span>
-        <h1 className="animate-fade-up [--animation-delay:400ms] opacity-0
-                     font-display text-5xl md:text-7xl font-semibold mb-6">
-          Elevate Your <br />Natural Beauty
-        </h1>
-        <p className="animate-fade-up [--animation-delay:600ms] opacity-0
-                    text-text-light max-w-lg mx-auto mb-8 text-lg">
-          Experience the perfect blend of artistry and care in our luxury nail salon,
-          where every visit is a journey to elegance.
-        </p>
-        <a href="#book"
-           className="animate-fade-up [--animation-delay:800ms] opacity-0
-                    inline-block bg-accent hover:bg-accent-lighter text-white
-                    px-8 py-3 rounded-full transition-colors duration-200">
-          Contact Us
-        </a>
+    <>
+      {/* Full-screen background */}
+      <div className="relative w-full min-h-screen bg-gray-900 flex items-center justify-center text-center overflow-hidden">
+        
+        {/* Vibrant Background Gradient */}
+        <div
+          className="absolute inset-0 w-full h-full blur-[160px] z-0"
+          style={{
+            background:
+              "linear-gradient(106.89deg, rgba(192, 132, 252, 0.3) 10%, rgba(14, 165, 233, 0.8) 25%, rgba(232, 121, 249, 0.6) 50%, rgba(79, 70, 229, 0.9) 100%)",
+          }}
+        ></div>
+
+        {/* Main Content */}
+        <div className="relative z-10 container mx-auto px-6">
+          {/* Enhanced Sparkle Text */}
+          <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-yellow-400 hover:duration-300">
+            <h1
+              className="font-display text-2xl md:text-3xl font-semibold mb-2 
+                        bg-gradient-to-r from-amber-50 via-amber-100 to-amber-50
+                        bg-clip-text text-transparent animate-pulse
+                        drop-shadow-[0_0_8px_rgba(255,215,0,0.8)]"
+            >
+              Luxury Nail Care
+            </h1>
+          </AnimatedShinyText>
+
+          {/* Elevation Text */}
+          <h1 className="animate-fade-up [--animation-delay:400ms] opacity-100 font-display text-5xl md:text-7xl font-semibold mb-6">
+            <TextAnimate animation="blurInUp" by="character" once>
+              Elevate Your Natural Beauty
+            </TextAnimate>
+          </h1>
+
+          {/* Description Text */}
+          <p className="animate-fade-up [--animation-delay:600ms] opacity-100 text-text-light max-w-lg mx-auto mb-8 text-lg">
+            Experience the perfect blend of artistry and care in our luxury nail salon,
+            where every visit is a journey to elegance.
+          </p>
+        </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32
-                    bg-gradient-to-t from-white to-transparent" />
-    </section>
+    </>
   );
 };
 
