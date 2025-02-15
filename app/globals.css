@@ -10,6 +10,47 @@ button {
   position: relative;
 }
 
+:root {
+  --size: 100px;
+}
+
+/* Parent container */
+.gallery {
+  grid-auto-rows: var(--size);
+}
+
+/* Dim non-hovered images on hover/focus */
+.gallery:has(img:hover) img:not(:hover),
+.gallery:has(img:focus) img:not(:focus) {
+  filter: brightness(0.5) contrast(0.5);
+}
+
+/* Original Diamond Shape for Images */
+.gallery-img {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  grid-column: auto / span 2;
+  transition: clip-path 0.25s, filter 0.25s;
+}
+
+/* Specific positioning for some images */
+.gallery-img:nth-child(5n-1) {
+  grid-column: 2 / span 2;
+}
+
+/* Hover & focus states */
+.gallery-img:hover,
+.gallery-img:focus {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+  z-index: 1;
+  transition: clip-path 0.25s, filter 0.25s;
+  filter: saturate(150%);
+}
+
+.gallery-img:focus {
+  outline: 10px dashed black;
+  outline-offset: -5px;
+}
+
 @layer base {
   * {
     @apply border-border;
