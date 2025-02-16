@@ -1,67 +1,96 @@
 "use client";
-import { Card } from "@/components/ui/card";
+
+import { useState } from "react";
 import Link from "next/link";
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useState, useEffect } from "react";
-import { MenuIcon, XIcon } from "lucide-react";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
 
 const serviceCategories = [
-  "Full Set",
-  "Overlay",
-  "Fills",
-  "Back Fill/Rebalance",
-  "Gel Polish",
-  "Gel Toes",
-  "Nail Polish",
-  "Manicure",
-  "Mini Pedicure",
-  "Additional Services",
-  "Waxing",
-  "Tinting",
+  {
+    title: "Full Set",
+    description: "Complete nail extension services for a flawless look.",
+    link: "/pricing?category=full-set",
+  },
+  {
+    title: "Overlay",
+    description: "Enhance your natural nails with a durable overlay.",
+    link: "/pricing?category=overlay",
+  },
+  {
+    title: "Fills",
+    description: "Maintain your nails with regular fill-ins.",
+    link: "/pricing?category=fills",
+  },
+  {
+    title: "Back Fill/Rebalance",
+    description: "Keep your nails looking fresh with back fills.",
+    link: "/pricing?category=back-fill-rebalance",
+  },
+  {
+    title: "Gel Polish",
+    description: "Long-lasting gel polish for vibrant nails.",
+    link: "/pricing?category=gel-polish",
+  },
+  {
+    title: "Gel Toes",
+    description: "Treat your toes to a gel polish for durability.",
+    link: "/pricing?category=gel-toes",
+  },
+  {
+    title: "Nail Polish",
+    description: "Classic nail polish application in various colors.",
+    link: "/pricing?category=nail-polish",
+  },
+  {
+    title: "Manicure",
+    description: "Pamper your hands with a relaxing manicure.",
+    link: "/pricing?category=manicure",
+  },
+  {
+    title: "Mini Pedicure",
+    description: "Quick and refreshing pedicure for busy schedules.",
+    link: "/pricing?category=mini-pedicure",
+  },
+  {
+    title: "Additional Services",
+    description: "Explore other nail care services we offer.",
+    link: "/pricing?category=additional",
+  },
+  {
+    title: "Waxing",
+    description: "Professional waxing services for smooth skin.",
+    link: "/pricing?category=waxing",
+  },
+  {
+    title: "Tinting",
+    description: "Enhance your brows and lashes with tinting.",
+    link: "/pricing?category=tinting",
+  },
 ];
 
 export const Services = () => {
-  const [isMobile, setIsMobile] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 950);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   return (
     <section id="services" className="py-24 bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-up">
+        <div className="text-center mb-16">
           <span className="text-accent uppercase tracking-wider text-sm font-medium">
             Our Services
           </span>
           <h2 className="font-display text-4xl font-semibold mt-2">
             Explore Our Service Categories
           </h2>
-        </div>        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {serviceCategories.map((category, index) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`service-card transform transition-all duration-300 hover:scale-105 hover:shadow-lg p-4 rounded-lg border ${
-                selectedCategory === category ? "bg-purple-200 shadow-lg" : ""
-              }`}
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <Card>
-                <h3 className="text-2xl font-display font-semibold mb-4 text-center">
-                  {category}
-                </h3>
-                <p className="text-center text-lg">
-                  Discover our {category} services and find the perfect fit for you.
-                </p>
-              </Card>
-            </button>
-          ))}
+        </div>
+        <div className="max-w-8xl mx-auto px-8">
+          <HoverEffect items={serviceCategories} />
+        </div>
+        <div className="text-center mt-8">
+          <Link
+            href="/pricing"
+            className="inline-block bg-purple-600 text-white text-lg font-semibold py-2 px-6 rounded-lg"
+          >
+            Learn More
+          </Link>
         </div>
       </div>
     </section>
