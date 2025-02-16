@@ -115,10 +115,47 @@ button {
   }
 }
 
-@media (max-width: 1024px) {
-  .toggle-button {
-    font-size: 0.875rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+@layer utilities {
+  @media (max-width: 1250px) {
+    .gallery-lg-cols {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
   }
 }
+
+/* For screens 1300px and above: show full list in one row */
+@media (min-width: 1300px) {
+  .category-full {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 1rem; /* adjust spacing as needed */
+  }
+  .category-hamburger {
+    display: none;
+  }
+}
+
+/* For screens between 600px and 800px: show full list and allow wrapping (two rows) */
+@media (min-width: 600px) and (max-width: 1299px) {
+  .category-full {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .category-hamburger {
+    display: none;
+  }
+}
+
+/* For screens less than 600px: hide full list, show hamburger menu */
+@media (max-width: 599px) {
+  .category-full {
+    display: none;
+  }
+  .category-hamburger {
+    display: block;
+  }
+}
+

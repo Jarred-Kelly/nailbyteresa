@@ -1,8 +1,7 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+
+import { useState, useEffect  } from 'react';
 import styled from '@emotion/styled';
 import ToggleSwitch from '@/components/ToggleSwitch';
 import ServiceCard from '@/components//ServiceCard';
@@ -192,22 +191,28 @@ const Container = styled.div`
 `;
 
 interface GridProps {
-  isAll?: boolean;
+  count?: number;
 }
-
 const Grid = styled.div<GridProps>`
   display: grid;
   gap: 20px;
   justify-content: center;
-  grid-template-columns: ${({ isAll }) =>
-    isAll ? "repeat(3, 300px)" : "repeat(auto-fit, 300px)"};
+  justify-items: center;
+  ${({ count }) =>
+    count !== undefined && count < 3
+      ? `grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));`
+      : `grid-template-columns: repeat(3, 300px);`
+  }
+
+  @media (max-width: 950px) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 `;
 
 const Pricing = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // For filtering the items by search term
   const filteredServices = services.map((category) => ({
     ...category,
     items: category.items.filter((service) =>
@@ -218,49 +223,71 @@ const Pricing = () => {
   return (
     <Section id="pricing">
       <Container>
-        <div className="text-center mb-16">
-          <span className="text-accent uppercase tracking-wider text-sm font-medium">
-            Our Pricing
-          </span>
-          <h2 className="font-display text-4xl font-semibold mt-2">
+        {/* Desktop Header (visible on larger devices) */}
+        <div className="desktop-header hidden md:block">
+          <div className="text-center mb-8">
+            <span className="text-accent uppercase tracking-wider text-sm font-medium">
+              Our Pricing
+            </span>
+            <h2 className="font-display text-4xl font-semibold mt-2">
+              Full Service Pricing
+            </h2>
+            <input
+              type="text"
+              placeholder="Search services..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="mt-4 p-2 border border-gray-300 rounded"
+            />
+          </div>
+          <div className="mb-16">
+            <ToggleSwitch
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
+          </div>
+        </div>
+
+        {/* Mobile Header (visible on smaller devices) */}
+        <div className="mobile-header md:hidden mb-16">
+          <h2 className="font-display text-4xl font-semibold pt-3 pb-4 mt-8 text-center">
             Full Service Pricing
           </h2>
-          <input
-            type="text"
-            placeholder="Search services..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="mt-4 p-2 border border-gray-300 rounded"
-          />
+          <div className="flex justify-center items-center">
+            <ToggleSwitch
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
+          </div>
         </div>
-        <ToggleSwitch
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
+
         <div className="space-y-16">
-          {selectedCategory === 'All' ? (
-            // Flatten all items into one grid with 3 cards per row
-            <Grid isAll>
-              {filteredServices.flatMap(category => category.items).map((service) => (
-                <ServiceCard
-                  key={`${service.title}-${service.price}`}
-                  title={service.title}
-                  description={service.description}
-                  price={service.price}
-                />
-              ))}
-            </Grid>
+          {selectedCategory === "All" ? (
+            (() => {
+              const allItems = filteredServices.flatMap((cat) => cat.items);
+              return (
+                <Grid>
+                  {allItems.map((service) => (
+                    <ServiceCard
+                      key={`${service.title}-${service.price}`}
+                      title={service.title}
+                      description={service.description}
+                      price={service.price}
+                    />
+                  ))}
+                </Grid>
+              );
+            })()
           ) : (
-            // Render category sections with auto-fit grid
             filteredServices
-              .filter(category => category.category === selectedCategory)
-              .map((category) => (
-                <div key={category.category}>
+              .filter((cat) => cat.category === selectedCategory)
+              .map((cat) => (
+                <div key={cat.category}>
                   <h3 className="text-2xl font-display font-semibold mb-8 text-center">
-                    {category.category}
+                    {cat.category}
                   </h3>
-                  <Grid>
-                    {category.items.map((service) => (
+                  <Grid count={cat.items.length}>
+                    {cat.items.map((service) => (
                       <ServiceCard
                         key={`${service.title}-${service.price}`}
                         title={service.title}

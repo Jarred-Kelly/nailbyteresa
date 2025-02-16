@@ -1,34 +1,26 @@
 import React from "react";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 import { TextAnimate } from "@/components/magicui/text-animate";
-import { PhotoGallery } from "@/components/ui/photo-gallery"; // Ensure this import is correct
+import { PhotoGallery } from "@/components/ui/photo-gallery";
+import Image1 from "../images/fg-1.jpg";
+import Image2 from "../images/fg-2.jpg";
+import Image3 from "../images/fg-3.jpg";
+import Image4 from "../images/fg-4.jpg";
+import Image5 from "../images/fg-9.jpg";
+import Image6 from "../images/fg-8.jpg";
+import Image7 from "../images/fg-7.jpg";
+import Image8 from "../images/fg-10.jpg";
 
 export const Hero = () => {
   const items = [
-    {
-      src: "https://www.shutterstock.com/image-photo/festive-nail-design-white-manicure-600nw-1972810304.jpg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    },
-    {
-      src: "https://st2.depositphotos.com/4368651/6753/i/450/depositphotos_67531037-stock-photo-floral-design-on-nails.jpg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    },
-    {
-      src: "https://t3.ftcdn.net/jpg/02/95/66/76/360_F_295667624_xEWO0cGDvGO2ydqOpQaW7KG0Nlh9JXb7.jpg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    },
-    {
-      src: "https://www.shutterstock.com/image-photo/festive-nail-design-white-manicure-600nw-1972810304.jpg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    },
-    {
-      src: "https://as2.ftcdn.net/v2/jpg/01/39/95/57/1000_F_139955768_V7oBHOkePCaZa7aFsyQShtytAgJoaNcv.jpg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    },
-    {
-      src: "https://static.vecteezy.com/system/resources/thumbnails/039/898/953/small/ai-generated-woman-hand-nail-stock-close-up-free-photo.jpg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    },
-    {
-      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9so2MmqP3yQb6Ltf7EzyddU6xdiy98b38Lw&s?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    },
-    {
-      src: "https://nailboo.com/cdn/shop/articles/AdobeStock_299270355_1.jpg?v=1631837474?v=1631837474?auto=compress&cs=tinysrgb&w=600&lazy=load",
-    },
+    { src: Image1 },
+    { src: Image2 },
+    { src: Image3 },
+    { src: Image4 },
+    { src: Image5 },
+    { src: Image6 },
+    { src: Image7 },
+    { src: Image8 },
   ];
 
   return (
@@ -39,18 +31,18 @@ export const Hero = () => {
         style={{
           background: `linear-gradient(
             to bottom,
-            rgba(25, 0, 50, 1) 0%,     /* Deep Dark Purple */
-            rgba(55, 0, 90, 0.9) 25%,   /* Rich Purple */
-            rgba(120, 50, 150, 0.7) 50%, /* Soft Violet */
-            rgba(200, 150, 200, 0.5) 75%, /* Light Lavender */
-            rgba(250, 250, 250, 1) 100%  /* Almost White */
+            rgba(122, 11, 192, 0.7) 0%,
+            rgba(141, 35, 207, 0.6) 25%,
+            rgba(174, 85, 231, 0.5) 50%,
+            rgba(196, 126, 240, 0.4) 75%,
+            rgba(250, 250, 250, 1) 100%
           )`,
         }}
       ></div>
 
-      {/* Main Content (Moved Down) */}
+      {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 pt-32 pb-16">
-        <div className="flex flex-col md:flex-row items-center justify-between">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
           {/* Left - Text Section */}
           <div className="flex-1 text-left">
             <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-yellow-400 hover:duration-300">
@@ -59,20 +51,20 @@ export const Hero = () => {
               </h1>
             </AnimatedShinyText>
 
-            <h1 className="animate-fade-up [--animation-delay:400ms] opacity-100 font-display text-5xl md:text-7xl font-semibold mb-6">
-              <TextAnimate animation="blurInUp" by="character" once>
-                Elevate Your Natural Beauty
-              </TextAnimate>
-            </h1>
+            <h1 className="animate-fade-up [--animation-delay:400ms] opacity-100 font-display text-5xl md:text-7xl font-semibold mb-6 break-keep">
+  <TextAnimate animation="blurInUp" by="character" once>
+    Elevate Your Natural Beauty
+  </TextAnimate>
+</h1>
 
-            <p className="animate-fade-up [--animation-delay:600ms] opacity-100 text-text-light max-w-lg mb-8 text-lg">
-              Experience the perfect blend of artistry and care in our luxury nail salon,
-              where every visit is a journey to elegance.
-            </p>
+<p className="animate-fade-up [--animation-delay:600ms] opacity-100 text-text-light max-w-lg mb-8 text-lg break-keep">
+  Experience the perfect blend of artistry and care in our luxury nail salon,
+  where every visit is a journey to elegance.
+</p>
           </div>
 
           {/* Right - Photo Gallery */}
-          <div className="flex-1 mt-8 md:mt-0 md:ml-12">
+          <div className="w-full lg:w-auto mt-8 lg:mt-0 lg:ml-12">
             <PhotoGallery items={items} />
           </div>
         </div>
