@@ -1,39 +1,36 @@
 "use client";
- 
+
 import React from "react";
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
 import { cn } from "@/lib/utils";
+import Image from 'next/image';
+
 
 const testimonials = [
   {
-    name: "Louanne Pretorius",
-    quote: "Baie dankie Teresa vir my pragtie naels!",
-    image: "placeholder.svg"
-  },
-  {
     name: "Wilma Liebenberg",
     quote: "Baie dankie vir die pragtige naels en lekker chat.",
-    image: "placeholder.svg"
+    image: "../images/nails_2.jpg", 
   },
   {
     name: "Jessica R.",
     quote: "Found my go-to nail salon. The ambiance and service are exceptional.",
-    image: "placeholder.svg"
+    image: "placeholder.svg",
   },
   {
-    name: "Demo Pretorius",
-    quote: "Baie dankie Teresa vir my pragtie naels!",
-    image: "placeholder.svg"
-  },
-  {
-    name: "Tester Liebenberg",
+    name: "Wilma Liebenbergs",
     quote: "Baie dankie vir die pragtige naels en lekker chat.",
-    image: "placeholder.svg"
+    image: "../images/nails_2.jpg", 
   },
   {
-    name: "New R.",
+    name: "Jessica Ree.",
     quote: "Found my go-to nail salon. The ambiance and service are exceptional.",
-    image: "placeholder.svg"
+    image: "placeholder.svg",
+  },
+  {
+    name: "Jessica Reese.",
+    quote: "Found my go-to nail salon. The ambiance and service are exceptional.",
+    image: "placeholder.svg",
   },
 ];
 
@@ -51,15 +48,21 @@ const TestimonialCard = ({
   return (
     <figure
       className={cn(
-        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4 transform transition-transform duration-300 hover:scale-105",
         // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
+        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
       )}
     >
       <div className="flex flex-row items-center gap-2">
-        <img alt="" src={img} />
+      <Image
+          alt={name}
+          src={`/images/${img}`}
+          width={50}
+          height={50}
+          className="rounded-full"
+        />
         <div className="flex flex-col">
           <figcaption className="text-sm font-medium dark:text-white">
             {name}
@@ -73,10 +76,15 @@ const TestimonialCard = ({
 
 export const Testimonials = () => {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden pb-4">
       <InfiniteMovingCards pauseOnHover className="[--duration:20s]">
         {firstRow.map((testimonial) => (
-          <TestimonialCard key={testimonial.name} img={testimonial.image} name={testimonial.name} quote={testimonial.quote} />
+          <TestimonialCard
+            key={testimonial.name}
+            img={testimonial.image}
+            name={testimonial.name}
+            quote={testimonial.quote}
+          />
         ))}
       </InfiniteMovingCards>
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
