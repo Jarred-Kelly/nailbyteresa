@@ -114,25 +114,29 @@ button {
     --chart-5: 340 75% 55%;
   }
 
-.custom-shape-divider-top-1739707578 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
+  .custom-shape-divider-top-1739707578 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
 
-.custom-shape-divider-top-1739707578 svg {
-  position: relative;
-  display: block;
-  width: calc(106% + 1.3px);
-  height: 133px;
-}
+  .custom-shape-divider-top-1739707578 svg {
+    position: relative;
+    display: block;
+    width: calc(106% + 1.3px);
+    height: 133px;
+  }
 
-.custom-shape-divider-top-1739707578 .shape-fill {
-  fill: #ffffff;
-}
+  .custom-shape-divider-top-1739707578 .shape-fill {
+    fill: #ffffff;
+  }
+
+  .h1 {    
+    font-family: sans-serif;
+  }
 }
 
 @layer utilities {
@@ -176,6 +180,15 @@ button {
   }
   .category-hamburger {
     display: block;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 

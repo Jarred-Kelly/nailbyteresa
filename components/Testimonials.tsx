@@ -10,27 +10,37 @@ const testimonials = [
   {
     name: "Wilma Liebenberg",
     quote: "Baie dankie vir die pragtige naels en lekker chat.",
-    image: "../images/nails_2.jpg", 
+    image: "nails_1.jpg", 
   },
   {
-    name: "Jessica R.",
-    quote: "Found my go-to nail salon. The ambiance and service are exceptional.",
-    image: "placeholder.svg",
+    name: "Louanne Pretorius",
+    quote: "Baie dankie vir my pragtige naels",
+    image: "nails_2.jpg",
   },
   {
-    name: "Wilma Liebenbergs",
-    quote: "Baie dankie vir die pragtige naels en lekker chat.",
-    image: "../images/nails_2.jpg", 
+    name: "Trish Rchardson",
+    quote: "Thank you very much for the spoil. Best pedicure I have ever had, such attention to detail",
+    image: "nails_7.jpg", 
   },
   {
-    name: "Jessica Ree.",
-    quote: "Found my go-to nail salon. The ambiance and service are exceptional.",
-    image: "placeholder.svg",
+    name: "Jade Elizabeth De Bruyn",
+    quote: "I have never been disappointed since day 1 ! I've been with Teresa for more than a year now and change my design every 3 weeks! Could not ask for a better tech!!",
+    image: "nails_8.jpg", 
   },
   {
-    name: "Jessica Reese.",
-    quote: "Found my go-to nail salon. The ambiance and service are exceptional.",
-    image: "placeholder.svg",
+    name: "Wilma Liebenberg",
+    quote: "Just in love with the new nails",
+    image: "nails_4.jpg",
+  },
+  {
+    name: "Louanne Pretorius",
+    quote: "Baie dankie weereens vir die pragtige naels. Jy het regtig waar n wonderlike talent",
+    image: "nails_5.jpg",
+  },
+  {
+    name: "Candice van der Walt",
+    quote: "Thank you for my beautifull new nail, I just love them. Perfect monthly spiol",
+    image: "nails_6.jpg",
   },
 ];
 
@@ -49,30 +59,27 @@ const TestimonialCard = ({
     <figure
       className={cn(
         "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4 transform transition-transform duration-300 hover:scale-105",
-        // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        // dark styles
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
       )}
     >
-      <div className="flex flex-row items-center gap-2">
-      <Image
+      <div className="flex flex-col items-center">
+        <figcaption className="text-sm font-medium dark:text-white">
+          {name}
+        </figcaption>
+        <blockquote className="mt-2 text-sm text-center">{quote}</blockquote>
+        <Image
           alt={name}
           src={`/images/${img}`}
-          width={50}
-          height={50}
-          className="rounded-full"
+          width={150}
+          height={150}
+          className="mt-4 rounded-lg"
         />
-        <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white">
-            {name}
-          </figcaption>
-        </div>
       </div>
-      <blockquote className="mt-2 text-sm">{quote}</blockquote>
     </figure>
   );
 };
+
 
 export const Testimonials = () => {
   return (

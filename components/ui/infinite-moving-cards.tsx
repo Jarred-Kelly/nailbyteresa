@@ -38,7 +38,7 @@ export function InfiniteMovingCards({
   pauseOnHover = true,
   children,
   vertical = false,
-  repeat = 4,
+  repeat = 100,
   ...props
 }: InfiniteMovingCardsProps) {
   return (

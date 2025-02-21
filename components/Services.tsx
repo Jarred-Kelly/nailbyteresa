@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
+import { PulsatingButton } from "@/components/magicui/pulsating-button";
 
 const serviceCategories = [
   {
@@ -74,9 +75,6 @@ export const Services = () => {
     <section id="services" className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-accent uppercase tracking-wider text-sm font-medium">
-            Our Services
-          </span>
           <h2 className="font-display text-4xl font-semibold mt-2">
             Explore Our Service Categories
           </h2>
@@ -85,11 +83,10 @@ export const Services = () => {
           <HoverEffect items={serviceCategories} />
         </div>
         <div className="text-center mt-8">
-          <Link
-            href="/pricing"
-            className="inline-block bg-purple-600 text-white text-lg font-semibold py-2 px-6 rounded-lg"
-          >
-            Learn More
+          <Link href="/pricing">
+            <PulsatingButton className="inline-block bg-purple-600 text-white text-lg font-semibold py-2 px-6 rounded-lg">
+              Learn More
+            </PulsatingButton >
           </Link>
         </div>
       </div>
