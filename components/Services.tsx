@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
 
