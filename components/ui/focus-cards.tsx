@@ -1,7 +1,13 @@
 "use client";
+
 import Image from "next/image";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+
+type CardProps = {
+  title: string;
+  src: string;
+};
 
 export const Card = React.memo(
   ({
@@ -10,7 +16,7 @@ export const Card = React.memo(
     hovered,
     setHovered,
   }: {
-    card: any;
+    card: CardProps;
     index: number;
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;

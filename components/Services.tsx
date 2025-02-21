@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
 
@@ -69,8 +69,6 @@ const serviceCategories = [
 ];
 
 export const Services = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
   return (
     <section id="services" className="py-24 bg-white">
       <div className="container mx-auto px-6">

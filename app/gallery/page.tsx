@@ -16,7 +16,6 @@ const cards: { title: string; src: string }[] = [
 ];
 
 const Gallery: React.FC = () => {
-  const images = cards.map(card => card.src); 
   return (
     <div className="flex flex-col pt-10 mb-5">
       {/* Gallery grid section */}

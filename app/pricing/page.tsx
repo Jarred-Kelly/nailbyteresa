@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect  } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import ToggleSwitch from '@/components/ToggleSwitch';
 import ServiceCard from '@/components//ServiceCard';
