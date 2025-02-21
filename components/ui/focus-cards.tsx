@@ -27,7 +27,7 @@ export const Card = React.memo(
         src={card.src}
         alt={card.title}
         fill
-        className="object-cover   w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
+        className="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
         loading="lazy"
       />
       <div
@@ -44,6 +44,7 @@ export const Card = React.memo(
 Card.displayName = "Card";
 
 type Card = {
+  title:string;
   src: string;
 };
 
@@ -54,6 +55,7 @@ export function FocusCards({ cards }: { cards: Card[] }) {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {cards.map((card, index) => (
         <Card
+          key={card.title || index}
           card={card}
           index={index}
           hovered={hovered}

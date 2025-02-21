@@ -90,8 +90,8 @@ export const Hero = () => {
                   <Image
                     src={image.src}
                     alt={`image-${index}`}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: 'cover' }}
                     className="rounded-lg"
                   />
                 </div>
