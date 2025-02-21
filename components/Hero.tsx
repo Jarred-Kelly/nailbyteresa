@@ -6,16 +6,25 @@ import { PhotoGallery } from "@/components/ui/photo-gallery";
 import Image from "next/image";
 import Link from 'next/link';
 
+import image1 from '/public/images/fg-1.jpg';
+import image2 from '/public/images/fg-2.jpg';
+import image3 from '/public/images/fg-3.jpg';
+import image4 from '/public/images/fg-4.jpg';
+import image5 from '/public/images/fg-9.jpg';
+import image6 from '/public/images/fg-8.jpg';
+import image7 from '/public/images/fg-7.jpg';
+import image8 from '/public/images/fg-10.jpg';
+
 export const Hero = () => {
   const items = [
-    { src: "/images/fg-1.jpg" },
-    { src: "/images/fg-2.jpg" },
-    { src: "/images/fg-3.jpg" },
-    { src: "/images/fg-4.jpg" },
-    { src: "/images/fg-9.jpg" },
-    { src: "/images/fg-8.jpg" },
-    { src: "/images/fg-7.jpg" },
-    { src: "/images/fg-10.jpg" },
+    { src: image1 },
+    { src: image2 },
+    { src: image3 },
+    { src: image4 },
+    { src: image5 },
+    { src: image6 },
+    { src: image7 },
+    { src: image8 },
   ];
 
   // Select the first three images for smaller screens
