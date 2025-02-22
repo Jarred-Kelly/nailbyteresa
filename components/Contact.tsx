@@ -58,7 +58,7 @@ export const Contact = () => {
                 To book an appointment, please contact us via WhatsApp:
               </p>
               <a
-                href="https://wa.me/2725694021"
+                href="https://wa.me/27825694021"
                 className="text-white hover:text-purple-800 transition-colors text-lg font-medium"
               >
                 (+27) 82 569 4021
